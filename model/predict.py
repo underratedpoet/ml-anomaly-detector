@@ -5,7 +5,7 @@ from data_collector.docker_stats import collect_metrics
 from alerting.email_alert import send_email_alert
 
 def realtime_detection():
-    model = joblib.load('model/isolation_model.pkl')
+    model = joblib.load('/app/data/isolation_model.pkl')
     metrics = collect_metrics()
     preds = model.predict(metrics[['cpu', 'mem', 'net_rx', 'net_tx']])
     scores = model.decision_function(metrics[['cpu', 'mem', 'net_rx', 'net_tx']])
